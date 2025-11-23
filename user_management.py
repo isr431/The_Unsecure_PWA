@@ -21,7 +21,7 @@ def retrieveUsers(username, password):
 
     # Vulnerable code: cur.execute(f"SELECT * FROM users WHERE username = '{username}'")
     cur.execute(
-        "SELECT password, salt FROM users WHERE username == ?",
+        "SELECT password FROM users WHERE username == ?",
         (username,),
     )
     result = cur.fetchone()
@@ -50,6 +50,7 @@ def retrieveUsers(username, password):
 
         hashed_password = result[0]
         match = bcrypt.checkpw(password.encode(), hashed_password)
+        con.close()
 
         if match:
             with open("visitor_log.txt", "r") as file:

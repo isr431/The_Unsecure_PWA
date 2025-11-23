@@ -4,6 +4,7 @@ from flask import request
 from flask import redirect
 from flask_cors import CORS
 import user_management as dbHandler
+import hashing
 
 # Code snippet for logging a message
 # app.logger.critical("message")
@@ -37,7 +38,11 @@ def signup():
         username = request.form["username"]
         password = request.form["password"]
         DoB = request.form["dob"]
-        dbHandler.insertUser(username, password, DoB)
+
+        hash, salt = hashing.hash_password(password)
+
+        # dbHandler.insertUser(username, password, DoB)
+        dbHandler.insertUser(username, hash, DoB, salt)
         return render_template("/index.html")
     else:
         return render_template("/signup.html")

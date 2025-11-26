@@ -1,18 +1,42 @@
-{% extends 'layout.html' %}
-{% block content %}
-<h1>Welcome {{ value }}!</h1>
-<form action="/success.html" method="post" class="box">
-  <div class="input__wrapper">
-    <input style="height:100px;vertical-align:top" type="text" name="feedback" id="feedback" placeholder="Enter your feedback here" class="input__field" required/>
-  </div>
-  <div class="input__wrapper">
-    <input type="submit" class="btn" value="Submit Feedback" />
-  </div>
-</form>
-<hr/>
-  <br/>
-  <h1>Others feedback</h1>
-      <div>
+{% extends 'layout.html' %} {% block content %}
+
+<div class="row justify-content-center">
+  <div class="col-lg-10">
+    <div class="card shadow-sm mb-5">
+      <div class="card-body p-5">
+        <h1 class="mb-4">Welcome, {{ value }}!</h1>
+
+        <form action="/success.html" method="post">
+          <div class="mb-3">
+            <label for="feedback" class="form-label">Your Feedback</label>
+            <textarea
+              name="feedback"
+              id="feedback"
+              class="form-control"
+              placeholder="Enter your feedback here..."
+              rows="6"
+              required
+            ></textarea>
+          </div>
+          <div class="d-flex justify-content-end">
+            <input
+              type="submit"
+              class="btn btn-primary btn-lg"
+              value="Submit Feedback"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card shadow-sm">
+      <div class="card-header">
+        <h2 class="h5 mb-0">Feedback from Others</h2>
+      </div>
+      <div class="card-body">
         {% include "partials/success_feedback.html" %}
       </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

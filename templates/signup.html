@@ -1,18 +1,49 @@
-{% extends 'layout.html' %}
-{% block content %}
-<h1>Signup Form</h1>
-<form action="/signup.html" method="POST" class="box">
-    <div class="input__wrapper">
-        <input type="text" name="username" placeholder="Username" class="input__field">
-    </div>            
-    <div class="input__wrapper">
-        <input type="password" name="password" placeholder="Password" class="input__field">
+{% extends 'layout.html' %} {% block content %}
+
+<div class="row justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <div class="card shadow-sm">
+      <div class="card-body p-5">
+        <h1 class="text-center mb-4">Create Account</h1>
+
+        <form action="/signup.html" method="POST">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              class="form-control"
+              placeholder="Choose a username"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              class="form-control"
+              placeholder="Create a password"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="dob" class="form-label">Date of Birth</label>
+            <input type="date" name="dob" id="dob" class="form-control" />
+          </div>
+
+          <div class="d-grid gap-2 mt-4">
+            <button type="submit" class="btn btn-success btn-lg">
+              Sign Up
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-    <div class="input__wrapper">
-        <input type="dateOfBirth" name="dob" placeholder="Date of Birth" class="input__field">
-    </div>
-    <div class="input__wrapper">
-        <button type="submit" class="btn">Submit</button>
-    </div>
-</form>
+  </div>
+</div>
 {% endblock %}

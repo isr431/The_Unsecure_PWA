@@ -1,32 +1,52 @@
 {% extends 'layout.html' %} {% block content %}
-<h1>Login</h1>
-<form action="/" method="post" class="box">
-  <div class="input__wrapper">
-    <input
-      type="text"
-      name="username"
-      id="username"
-      placeholder="Username"
-      class="input__field"
-      required
-    />
+
+<div class="row justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <div class="card shadow-sm">
+      <div class="card-body p-5">
+        <h1 class="text-center mb-4">Login</h1>
+
+        <form action="/" method="post">
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              class="form-control form-control-lg"
+              placeholder="Enter your username"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              class="form-control form-control-lg"
+              placeholder="Enter your password"
+              required
+            />
+          </div>
+
+          <div class="d-grid gap-2 mt-4">
+            <input
+              type="submit"
+              class="btn btn-primary btn-lg"
+              value="Log In"
+            />
+          </div>
+        </form>
+
+        {% if msg %}
+        <div class="alert alert-danger mt-3 text-center" role="alert">
+          {{ msg|safe }}
+        </div>
+        {% endif %}
+      </div>
+    </div>
   </div>
-  <div class="input__wrapper">
-    <input
-      type="password"
-      name="password"
-      id="password"
-      placeholder="Password"
-      class="input__field"
-      required
-    />
-  </div>
-  <div class="input__wrapper">
-    <input type="submit" class="btn" value="Log In" />
-  </div>
-</form>
-<!-- User message -->
-{% if msg %}
-<div>{{ msg|safe }}</div>
-{% endif %}
+</div>
 {% endblock %}

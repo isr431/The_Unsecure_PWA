@@ -4,6 +4,7 @@ from flask import request
 from flask import redirect
 from flask_cors import CORS
 import user_management as dbHandler
+import data_handler as sanitise
 import hashing
 
 # Code snippet for logging a message
@@ -21,7 +22,7 @@ def addFeedback():
         return redirect(url, code=302)
     if request.method == "POST":
         feedback = request.form["feedback"]
-        dbHandler.insertFeedback(feedback)
+        dbHandler.insertFeedback(sanitise.make_web_safe(feedback))
         dbHandler.listFeedback()
         return render_template("/success.html", state=True, value="Back")
     else:

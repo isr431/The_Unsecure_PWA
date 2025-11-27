@@ -39,8 +39,13 @@ def signup():
         username = request.form["username"]
         password = request.form["password"]
         DoB = request.form["dob"]
-        hashed_password, salt = hash_pw(password)
 
+        try:
+            sanitise.check_password(password)
+        except ValueError as e:
+            return render_template("/signup.html", msg=f"Password error: {e}")
+
+        hashed_password, salt = hash_pw(password)
         dbHandler.insertUser(username, hashed_password, DoB, salt)
         return render_template("/index.html")
     else:

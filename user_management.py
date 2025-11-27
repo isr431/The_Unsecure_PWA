@@ -30,7 +30,7 @@ def retrieveUsers(username, password):
         con.close()
         return False
     else:
-        # # Vulnerable code: cur.execute(f"SELECT * FROM users WHERE password = '{password}'")
+        # # cur.execute(f"SELECT * FROM users WHERE password = '{password}'")
         # # Plain text log of visitor count as requested by Unsecure PWA management
         # with open("visitor_log.txt", "r") as file:
         #     number = int(file.read().strip())
